@@ -1,7 +1,7 @@
 <?php
 
-$attempts = 50;
 $filename = $argv[0];
+$attempts = $argv[1] ?? 50;
 $results = [];
 
 foreach (hash_algos() as $algo) {
