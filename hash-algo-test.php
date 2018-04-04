@@ -1,7 +1,14 @@
 <?php
 
-$filename = $argv[0];
-$attempts = $argv[1] ?? 50;
+$filename = $argv[1];
+$attempts = (int) ($argv[2] ?? 50);
+
+if (empty($attempts)) {
+    var_dump($attempts);
+    var_dump($argv);
+    exit;
+}
+
 $results = [];
 
 foreach (hash_algos() as $algo) {
@@ -15,7 +22,7 @@ foreach (hash_algos() as $algo) {
 
     $results[] = [
         'a' => $algo,
-        't' => array_sum($intermediateResults) / $attempts * 1E5,
+        't' => array_sum($intermediateResults) / $attempts,
         'h' => $h,
     ];
 }
